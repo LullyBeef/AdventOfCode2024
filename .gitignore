@@ -20,4 +20,5 @@
 # Go workspace file
 go.work
 
+# Advent of Code puzzle inputs which we don't want to check in.
 inputs/
