@@ -38,6 +38,9 @@ func fetchNumLists(fileName string) ([]int, []int) {
 		leftNums = append(leftNums, v)
 
 		v, err = strconv.Atoi(nums[1])
+		if err != nil {
+			panic(err)
+		}
 
 		rightNums = append(rightNums, v)
 	}
