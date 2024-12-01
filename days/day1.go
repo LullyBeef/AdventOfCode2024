@@ -3,7 +3,6 @@ package days
 import (
 	"bufio"
 	"fmt"
-	"log"
 	"os"
 	"slices"
 	"strconv"
@@ -14,7 +13,7 @@ func fetchNumLists(fileName string) ([]int, []int) {
 	file, err := os.Open(fileName)
 
 	if err != nil {
-		log.Fatal(err)
+		panic(err)
 	}
 	defer file.Close()
 
