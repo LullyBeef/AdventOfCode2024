@@ -20,5 +20,8 @@
 # Go workspace file
 go.work
 
+# VSCode files
+.vscode/
+
 # Advent of Code puzzle inputs which we don't want to check in.
 inputs/

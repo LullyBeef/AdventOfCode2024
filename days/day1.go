@@ -1,47 +1,24 @@
 package days
 
 import (
-	"bufio"
+	"aoc24/utils"
 	"fmt"
-	"os"
 	"slices"
-	"strconv"
-	"strings"
 )
 
 func fetchNumLists(fileName string) ([]int, []int) {
-	file, err := os.Open(fileName)
-
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
 	var leftNums []int
 	var rightNums []int
 
-	scanner := bufio.NewScanner(file)
+	input := utils.Read2DNumFile(fileName, "   ")
 
-	for scanner.Scan() {
-		nums := strings.Split(scanner.Text(), "   ")
-
-		if len(nums) != 2 {
+	for _, row := range input {
+		if len(row) != 2 {
 			panic("Expected 2 numbers! Parsing error...")
 		}
 
-		v, err := strconv.Atoi(nums[0])
-		if err != nil {
-			panic(err)
-		}
-
-		leftNums = append(leftNums, v)
-
-		v, err = strconv.Atoi(nums[1])
-		if err != nil {
-			panic(err)
-		}
-
-		rightNums = append(rightNums, v)
+		leftNums = append(leftNums, row[0])
+		rightNums = append(rightNums, row[1])
 	}
 
 	return leftNums, rightNums
