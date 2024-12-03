@@ -7,6 +7,25 @@ import (
 	"strings"
 )
 
+func ReadFile(fileName string) []string {
+	file, err := os.Open(fileName)
+
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	scanner := bufio.NewScanner(file)
+
+	var lines []string
+
+	for scanner.Scan() {
+		lines = append(lines, scanner.Text())
+	}
+
+	return lines
+}
+
 func Read2DNumFile(fileName string, delim string) [][]int {
 	file, err := os.Open(fileName)
 
