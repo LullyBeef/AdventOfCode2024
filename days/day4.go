@@ -132,7 +132,6 @@ func findMasX(input []string, aLoc indexPair, foundChan chan bool) {
 		}
 
 		panic("Shouldn't get here!")
-		return false
 	}
 
 	//This should be redundant as we validate the index pair before kicking off the goroutines.
