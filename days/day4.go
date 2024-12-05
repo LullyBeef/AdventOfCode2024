@@ -5,18 +5,18 @@ import (
 	"fmt"
 )
 
-type Direction int
+type direction int
 
 const (
-	DIR_UP Direction = iota
-	DIR_DOWN
-	DIR_LEFT
-	DIR_RIGHT
-	DIR_UP_RIGHT
-	DIR_UP_LEFT
-	DIR_DOWN_RIGHT
-	DIR_DOWN_LEFT
-	DIR_MAX
+	dirUp direction = iota
+	dirDown
+	dirLeft
+	dirRight
+	dirUpRight
+	dirUpLeft
+	dirDownRight
+	dirDownLeft
+	dirMax
 )
 
 type indexPair struct {
@@ -32,7 +32,7 @@ func findXmas(input []string, xLoc indexPair, foundChan chan int) {
 	numRows := len(input)
 	numCols := len(input[0])
 
-	for dir := DIR_UP; dir < DIR_MAX; dir++ {
+	for dir := dirUp; dir < dirMax; dir++ {
 		findXmasDirFunc := func(rowInc, colInc int) {
 			if input[startRow+rowInc*1][startCol+colInc*1] == 'M' &&
 				input[startRow+rowInc*2][startCol+colInc*2] == 'A' &&
@@ -42,41 +42,41 @@ func findXmas(input []string, xLoc indexPair, foundChan chan int) {
 		}
 
 		switch dir {
-		case DIR_UP:
+		case dirUp:
 			if startRow >= 3 {
 				findXmasDirFunc(-1, 0)
 			}
 
-		case DIR_DOWN:
+		case dirDown:
 			if startRow < numRows-3 {
 				findXmasDirFunc(1, 0)
 			}
 
-		case DIR_LEFT:
+		case dirLeft:
 			if startCol >= 3 {
 				findXmasDirFunc(0, -1)
 			}
 
-		case DIR_RIGHT:
+		case dirRight:
 			if startCol < numCols-3 {
 				findXmasDirFunc(0, 1)
 			}
 
-		case DIR_UP_RIGHT:
+		case dirUpRight:
 			if startRow >= 3 && startCol < numCols-3 {
 				findXmasDirFunc(-1, 1)
 			}
-		case DIR_UP_LEFT:
+		case dirUpLeft:
 			if startRow >= 3 && startCol >= 3 {
 				findXmasDirFunc(-1, -1)
 			}
 
-		case DIR_DOWN_RIGHT:
+		case dirDownRight:
 			if startRow < numRows-3 && startCol < numCols-3 {
 				findXmasDirFunc(1, 1)
 			}
 
-		case DIR_DOWN_LEFT:
+		case dirDownLeft:
 			if startRow < numRows-3 && startCol >= 3 {
 				findXmasDirFunc(1, -1)
 			}
@@ -119,15 +119,15 @@ func findMasX(input []string, aLoc indexPair, foundChan chan bool) {
 	centreRow := aLoc.a
 	centreCol := aLoc.b
 
-	checkDirFunc := func(dir Direction) bool {
+	checkDirFunc := func(dir direction) bool {
 		switch dir {
-		case DIR_DOWN_RIGHT:
+		case dirDownRight:
 			return input[centreRow-1][centreCol-1] == 'M' && input[centreRow+1][centreCol+1] == 'S'
-		case DIR_DOWN_LEFT:
+		case dirDownLeft:
 			return input[centreRow-1][centreCol+1] == 'M' && input[centreRow+1][centreCol-1] == 'S'
-		case DIR_UP_RIGHT:
+		case dirUpRight:
 			return input[centreRow+1][centreCol-1] == 'M' && input[centreRow-1][centreCol+1] == 'S'
-		case DIR_UP_LEFT:
+		case dirUpLeft:
 			return input[centreRow+1][centreCol+1] == 'M' && input[centreRow-1][centreCol-1] == 'S'
 		}
 
@@ -137,14 +137,14 @@ func findMasX(input []string, aLoc indexPair, foundChan chan bool) {
 	//This should be redundant as we validate the index pair before kicking off the goroutines.
 	validCentre := centreRow > 0 && centreRow < len(input)-1 && centreCol > 0 && centreCol < len(input[0])-1
 	if validCentre {
-		if checkDirFunc(DIR_DOWN_RIGHT) {
-			validX = checkDirFunc(DIR_UP_RIGHT) || checkDirFunc(DIR_DOWN_LEFT)
-		} else if checkDirFunc(DIR_DOWN_LEFT) {
-			validX = checkDirFunc(DIR_UP_LEFT) || checkDirFunc(DIR_DOWN_RIGHT)
-		} else if checkDirFunc(DIR_UP_RIGHT) {
-			validX = checkDirFunc(DIR_UP_LEFT) || checkDirFunc(DIR_DOWN_RIGHT)
-		} else if checkDirFunc(DIR_UP_LEFT) {
-			validX = checkDirFunc(DIR_UP_RIGHT) || checkDirFunc(DIR_DOWN_LEFT)
+		if checkDirFunc(dirDownRight) {
+			validX = checkDirFunc(dirUpRight) || checkDirFunc(dirDownLeft)
+		} else if checkDirFunc(dirDownLeft) {
+			validX = checkDirFunc(dirUpLeft) || checkDirFunc(dirDownRight)
+		} else if checkDirFunc(dirUpRight) {
+			validX = checkDirFunc(dirUpLeft) || checkDirFunc(dirDownRight)
+		} else if checkDirFunc(dirUpLeft) {
+			validX = checkDirFunc(dirUpRight) || checkDirFunc(dirDownLeft)
 		}
 	} else {
 		panic("How did this happen?!")
