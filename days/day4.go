@@ -8,15 +8,15 @@ import (
 type Direction int
 
 const (
-	DIR_UP         Direction = 0
-	DIR_DOWN       Direction = 1
-	DIR_LEFT       Direction = 2
-	DIR_RIGHT      Direction = 3
-	DIR_UP_RIGHT   Direction = 4
-	DIR_UP_LEFT    Direction = 5
-	DIR_DOWN_RIGHT Direction = 6
-	DIR_DOWN_LEFT  Direction = 7
-	DIR_MAX        Direction = 8
+	DIR_UP Direction = iota
+	DIR_DOWN
+	DIR_LEFT
+	DIR_RIGHT
+	DIR_UP_RIGHT
+	DIR_UP_LEFT
+	DIR_DOWN_RIGHT
+	DIR_DOWN_LEFT
+	DIR_MAX
 )
 
 type indexPair struct {
