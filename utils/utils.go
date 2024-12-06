@@ -7,7 +7,8 @@ import (
 	"strings"
 )
 
-func ReadFile(fileName string) []string {
+// Allow custom parsing for each line.
+func ReadFileWithParse(fileName string, parseFunc func(line string)) {
 	file, err := os.Open(fileName)
 
 	if err != nil {
@@ -17,31 +18,30 @@ func ReadFile(fileName string) []string {
 
 	scanner := bufio.NewScanner(file)
 
+	for scanner.Scan() {
+		parseFunc(scanner.Text())
+	}
+}
+
+// Versions for common parsing options.
+func ReadFile(fileName string) []string {
 	var lines []string
 
-	for scanner.Scan() {
-		lines = append(lines, scanner.Text())
-	}
+	ReadFileWithParse(fileName, func(line string) {
+		lines = append(lines, line)
+	})
 
 	return lines
 }
 
 func Read2DNumFile(fileName string, delim string) [][]int {
-	file, err := os.Open(fileName)
-
-	if err != nil {
-		panic(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
-
 	var retNums [][]int
 
-	for i := 0; scanner.Scan(); i++ {
+	lineIdx := 0
+	ReadFileWithParse(fileName, func(line string) {
 		retNums = append(retNums, nil)
 
-		nums := strings.Split(scanner.Text(), delim)
+		nums := strings.Split(line, delim)
 
 		for _, num := range nums {
 			v, err := strconv.Atoi(num)
@@ -50,9 +50,11 @@ func Read2DNumFile(fileName string, delim string) [][]int {
 				panic(err)
 			}
 
-			retNums[i] = append(retNums[i], v)
+			retNums[lineIdx] = append(retNums[lineIdx], v)
 		}
-	}
+
+		lineIdx++
+	})
 
 	return retNums
 }
