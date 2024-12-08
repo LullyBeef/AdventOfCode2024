@@ -1,4 +1,4 @@
-package days
+package day5
 
 import (
 	"aoc24/utils"
@@ -72,7 +72,7 @@ func checkInOrder(update []int, pagePairs []pagePair) bool {
 	return true
 }
 
-func runDay5Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	pagePairs, updates := parseInput(fileName)
 
 	sumMiddlePages := 0
@@ -113,7 +113,7 @@ func runDay5Puzzle2(fileName string) {
 	fmt.Println("Sum Middle Pages: ", sumMiddlePages)
 }
 
-func runDay5Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	pagePairs, updates := parseInput(fileName)
 
 	sumMiddlePages := 0
@@ -135,16 +135,10 @@ func runDay5Puzzle1(fileName string) {
 	fmt.Println("Sum Middle Pages: ", sumMiddlePages)
 }
 
-func Day5() {
-	fmt.Println("Running Day 5 Puzzle 1 Example...")
-	runDay5Puzzle1("inputs/day5_example.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 5 Puzzle 1...")
-	runDay5Puzzle1("inputs/day5.txt")
-
-	fmt.Println("Running Day 5 Puzzle 2 Example...")
-	runDay5Puzzle2("inputs/day5_example.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 5 Puzzle 2...")
-	runDay5Puzzle2("inputs/day5.txt")
+	runPuzzle2(inputFileName)
 }

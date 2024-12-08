@@ -1,4 +1,4 @@
-package days
+package day4
 
 import (
 	"aoc24/utils"
@@ -86,7 +86,7 @@ func findXmas(input []string, xLoc indexPair, foundChan chan int) {
 	foundChan <- dirsFound
 }
 
-func runDay4Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	input := utils.ReadFile(fileName)
 
 	var xLocs []indexPair
@@ -153,7 +153,7 @@ func findMasX(input []string, aLoc indexPair, foundChan chan bool) {
 	foundChan <- validX
 }
 
-func runDay4Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	input := utils.ReadFile(fileName)
 
 	var aLocs []indexPair
@@ -186,16 +186,10 @@ func runDay4Puzzle2(fileName string) {
 	fmt.Println("Num Found: ", numFound)
 }
 
-func Day4() {
-	fmt.Println("Running Day 4 Puzzle 1 Example...")
-	runDay4Puzzle1("inputs/day4_example.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 4 Puzzle 1...")
-	runDay4Puzzle1("inputs/day4.txt")
-
-	fmt.Println("Running Day 4 Puzzle 2 Example...")
-	runDay4Puzzle2("inputs/day4_example.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 4 Puzzle 2...")
-	runDay4Puzzle2("inputs/day4.txt")
+	runPuzzle2(inputFileName)
 }

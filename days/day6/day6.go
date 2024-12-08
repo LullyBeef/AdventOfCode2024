@@ -1,4 +1,4 @@
-package days
+package day6
 
 import (
 	"aoc24/utils"
@@ -14,9 +14,9 @@ func (v *vec2d) add(otherV *vec2d) {
 	v.y += otherV.y
 }
 
-func (v *vec2d) equals(otherV *vec2d) bool {
+/*func (v *vec2d) equals(otherV *vec2d) bool {
 	return v.x == otherV.x && v.y == otherV.y
-}
+}*/
 
 type guardDir int
 
@@ -102,7 +102,7 @@ func parseInitialState(input []string) (guardPosition vec2d, guardDirection guar
 	return
 }
 
-func runDay6Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	input := utils.ReadFile(fileName)
 	guardPosition, guardDirection, grid := parseInitialState(input)
 
@@ -120,7 +120,7 @@ func runDay6Puzzle1(fileName string) {
 	fmt.Println("Num Visited: ", numVisited)
 }
 
-func runDay6Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	input := utils.ReadFile(fileName)
 	guardPosition, guardDirection, grid := parseInitialState(input)
 
@@ -173,16 +173,10 @@ func runDay6Puzzle2(fileName string) {
 	fmt.Println("Num Loops: ", numLoops)
 }
 
-func Day6() {
-	fmt.Println("Running Day 6 Puzzle 1 Example...")
-	runDay6Puzzle1("inputs/day6_example.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 6 Puzzle 1...")
-	runDay6Puzzle1("inputs/day6.txt")
-
-	fmt.Println("Running Day 6 Puzzle 2 Example...")
-	runDay6Puzzle2("inputs/day6_example.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 6 Puzzle 2...")
-	runDay6Puzzle2("inputs/day6.txt")
+	runPuzzle2(inputFileName)
 }

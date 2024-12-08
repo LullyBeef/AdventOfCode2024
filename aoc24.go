@@ -1,12 +1,15 @@
 package main
 
-import "aoc24/days"
+import (
+	"aoc24/days/day7"
+)
 
 func main() {
-	//days.Day1()
-	//days.Day2()
-	//days.Day3()
-	//days.Day4()
-	//days.Day5()
-	days.Day6()
+	//day1.Run("days/day1/input.txt")
+	//day2.Run("days/day2/input.txt")
+	//day3.Run("days/day3/input.txt")
+	//day4.Run("days/day4/input.txt")
+	//day5.Run("days/day5/input.txt")
+	//day6.Run("days/day6/input.txt")
+	day7.Run("days/day7/input.txt")
 }

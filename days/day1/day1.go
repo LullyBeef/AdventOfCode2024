@@ -1,4 +1,4 @@
-package days
+package day1
 
 import (
 	"aoc24/utils"
@@ -24,7 +24,7 @@ func fetchNumLists(fileName string) ([]int, []int) {
 	return leftNums, rightNums
 }
 
-func runDay1Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	leftNums, rightNums := fetchNumLists(fileName)
 
 	slices.Sort(leftNums)
@@ -50,7 +50,7 @@ func runDay1Puzzle1(fileName string) {
 	fmt.Println("sumDiffs: ", sumDiffs)
 }
 
-func runDay1Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	leftNums, rightNums := fetchNumLists(fileName)
 
 	score := 0
@@ -68,16 +68,10 @@ func runDay1Puzzle2(fileName string) {
 	fmt.Println("score: ", score)
 }
 
-func Day1() {
-	fmt.Println("Running Day 1 Puzzle 1 Example...")
-	runDay1Puzzle1("inputs/day1_example.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 1 Puzzle 1...")
-	runDay1Puzzle1("inputs/day1.txt")
-
-	fmt.Println("Running Day 1 Puzzle 2 Example...")
-	runDay1Puzzle2("inputs/day1_example.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 1 Puzzle 2...")
-	runDay1Puzzle2("inputs/day1.txt")
+	runPuzzle2(inputFileName)
 }

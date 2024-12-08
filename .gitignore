@@ -24,4 +24,4 @@ go.work
 .vscode/
 
 # Advent of Code puzzle inputs which we don't want to check in.
-inputs/
+input*.txt

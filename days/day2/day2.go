@@ -1,4 +1,4 @@
-package days
+package day2
 
 import (
 	"aoc24/utils"
@@ -106,7 +106,7 @@ func checkRowSafeWithDampener(row []int, safeChan chan bool) {
 	safeChan <- safe
 }
 
-func runDay2Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	input := utils.Read2DNumFile(fileName, " ")
 
 	numRows := len(input)
@@ -126,7 +126,7 @@ func runDay2Puzzle2(fileName string) {
 	fmt.Println("Num Safe: ", numSafe)
 }
 
-func runDay2Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	input := utils.Read2DNumFile(fileName, " ")
 
 	numRows := len(input)
@@ -146,16 +146,10 @@ func runDay2Puzzle1(fileName string) {
 	fmt.Println("Num Safe: ", numSafe)
 }
 
-func Day2() {
-	fmt.Println("Running Day 2 Puzzle 1 Example...")
-	runDay2Puzzle1("inputs/day2_example.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 2 Puzzle 1...")
-	runDay2Puzzle1("inputs/day2.txt")
-
-	fmt.Println("Running Day 2 Puzzle 2 Example...")
-	runDay2Puzzle2("inputs/day2_example.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 2 Puzzle 2...")
-	runDay2Puzzle2("inputs/day2.txt")
+	runPuzzle2(inputFileName)
 }

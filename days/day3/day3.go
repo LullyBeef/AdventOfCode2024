@@ -1,4 +1,4 @@
-package days
+package day3
 
 import (
 	"aoc24/utils"
@@ -61,28 +61,22 @@ func handleInstructionList(input []string, onlyMul bool) int {
 	return sumProducts
 }
 
-func runDay3Puzzle1(fileName string) {
+func runPuzzle1(fileName string) {
 	input := utils.ReadFile(fileName)
 	sumProducts := handleInstructionList(input, true)
 	fmt.Println("Sum Products: ", sumProducts)
 }
 
-func runDay3Puzzle2(fileName string) {
+func runPuzzle2(fileName string) {
 	input := utils.ReadFile(fileName)
 	sumProducts := handleInstructionList(input, false)
 	fmt.Println("Sum Products: ", sumProducts)
 }
 
-func Day3() {
-	fmt.Println("Running Day 3 Puzzle 1 Example...")
-	runDay3Puzzle1("inputs/day3_example1.txt")
-
+func Run(inputFileName string) {
 	fmt.Println("Running Day 3 Puzzle 1...")
-	runDay3Puzzle1("inputs/day3.txt")
-
-	fmt.Println("Running Day 3 Puzzle 2 Example...")
-	runDay3Puzzle2("inputs/day3_example2.txt")
+	runPuzzle1(inputFileName)
 
 	fmt.Println("Running Day 3 Puzzle 2...")
-	runDay3Puzzle2("inputs/day3.txt")
+	runPuzzle2(inputFileName)
 }
